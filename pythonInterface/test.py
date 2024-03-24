@@ -10,6 +10,6 @@ def func(x, A):
 x0 = np.array([ -1.0, 1.0])
 xf, info = geodesiclm(func, x0, args = (1000,), full_output=1, print_level = 5, iaccel = 1, maxiters = 10000, artol = -1.0, xtol = -1, ftol = -1, avmax = 2.0)
 
-print info
+print(info)
 
-print xf
+print(xf)

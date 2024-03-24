@@ -48,20 +48,20 @@ def geodesiclm(func, x0, **kwargs):
     ## Check for kwargs
 
     ## func_args
-    if kwargs.has_key('func_args'):
+    if 'func_args' in kwargs:
         func_extra_args = kwargs['func_args']
-    elif kwargs.has_key('args'):
+    elif 'args' in kwargs:
         func_extra_args = kwargs['args']
     else:
         func_extra_args = ()
 
     ## jacobian, h1, jacobian_extra_args
-    if kwargs.has_key('jacobian'):
+    if 'jacobian' in kwargs:
         jacobian = kwargs['jacobian']
         h1 = -1.0
-        if kwargs.has_key('jacobian_args'):
+        if 'jacobian_args' in kwargs:
             jacobian_extra_args = kwargs['jacobian_args']
-        elif kwargs.has_key('args'):
+        elif 'args' in kwargs:
             jacobian_extra_args = kwargs['args']
         else:
             jacobian_extra_args = ()
@@ -69,19 +69,19 @@ def geodesiclm(func, x0, **kwargs):
     else:
         jacobian = jacobian_dummy
         jacobian_extra_args = ()
-        if kwargs.has_key('h1'):
+        if 'h1' in kwargs:
             h1 = kwargs['h1']
         else:
             h1 = 1.49012e-08
         analytic_jac = False
 
     ## Avv, h2, Avv_args
-    if kwargs.has_key('Avv'):
+    if 'Avv' in kwargs:
         Avv = kwargs['Avv']
         h2 = -1.0
-        if kwargs.has_key('Avv_args'):
+        if 'Avv_args' in kwargs:
             Avv_extra_args = kwargs['Avv_args']
-        elif kwargs.has_key('args'):
+        elif 'args' in kwargs:
             Avv_extra_args = kwargs['args']
         else:
             Avv_extra_args = ()
@@ -89,20 +89,20 @@ def geodesiclm(func, x0, **kwargs):
     else:
         Avv = Avv_dummy
         Avv_extra_args = ()
-        if kwargs.has_key('h2'):
+        if 'h2' in kwargs:
             h2 = kwargs['h2']
         else:
             h2 = 0.1
         analytic_Avv = False
 
     ## center_diff
-    if kwargs.has_key('center_diff'):
+    if 'center_diff' in kwargs:
         center_diff = kwargs['center_diff']
     else:
         center_diff = False
 
     ## callback
-    if kwargs.has_key('callback'):
+    if 'callback' in kwargs:
         callback = kwargs['callback']
     else:
         callback = callback_dummy
@@ -112,96 +112,96 @@ def geodesiclm(func, x0, **kwargs):
 
     ## dtd
     dtd = numpy.empty( (len(x0), len(x0) ), order = 'F')
-    if kwargs.has_key('dtd'):
+    if 'dtd' in kwargs:
         dtd[:,:] = kwargs['dtd'][:,:] # guarantee that order = 'F'
     else:
         dtd[:,:] = numpy.eye( len(x0) )[:,:]
-        
-    if kwargs.has_key('damp_mode'):
+
+    if 'damp_mode' in kwargs:
         damp_mode = kwargs['damp_mode']
     else:
         damp_mode = 1
-        
+
     ## maxiter
-    if kwargs.has_key('maxiter'):
+    if 'maxiter' in kwargs:
         maxiter = kwargs['maxiter']
     else:
         maxiter = 200*(len(x0) + 1 )
-        
+
     ## maxfev
-    if kwargs.has_key('maxfev'):
+    if 'maxfev' in kwargs:
         maxfev = kwargs['maxfev']
     else:
         maxfev = 0
 
     ## maxjev
-    if kwargs.has_key('maxjev'):
+    if 'maxjev' in kwargs:
         maxjev = kwargs['maxjev']
     else:
         maxjev = 0
 
     ## maxaev
-    if kwargs.has_key('maxaev'):
+    if 'maxaev' in kwargs:
         maxaev = kwargs['maxaev']
     else:
         maxaev = 0
 
     ## maxlam
-    if kwargs.has_key('maxlam'):
+    if 'maxlam' in kwargs:
         maxlam = kwargs['maxlam']
     else:
         maxlam = -1.0
 
     ## minlam
-    if kwargs.has_key('minlam'):
+    if 'minlam' in kwargs:
         minlam = kwargs['minlam']
     else:
         minlam = -1.0
 
     ## artol
-    if kwargs.has_key('artol'):
+    if 'artol' in kwargs:
         artol = kwargs['artol']
     else:
         artol = 0.001
 
     ## Cgoal
-    if kwargs.has_key('Cgoal'):
+    if 'Cgoal' in kwargs:
         Cgoal = kwargs['Cgoal']
     else:
         Cgoal = 1.49012e-08
 
     ## gtol
-    if kwargs.has_key('gtol'):
+    if 'gtol' in kwargs:
         gtol = kwargs['gtol']
     else:
         gtol = 1.49012e-08
 
     ## xtol
-    if kwargs.has_key('xtol'):
+    if 'xtol' in kwargs:
         xtol = kwargs['xtol']
     else:
         xtol = 1.49012e-08
 
     ## xrtol
-    if kwargs.has_key('xrtol'):
+    if 'xrtol' in kwargs:
         xrtol = kwargs['xrtol']
     else:
         xrtol = -1.0
 
     ## ftol
-    if kwargs.has_key('ftol'):
+    if 'ftol' in kwargs:
         ftol = kwargs['ftol']
     else:
         ftol = 1.49012e-08
 
     ## frtol
-    if kwargs.has_key('frtol'):
+    if 'frtol' in kwargs:
         frtol = kwargs['frtol']
     else:
         frtol = -1.0
 
     ## print_level
-    if kwargs.has_key('print_level'):
+    if 'print_level' in kwargs:
         print_level = kwargs['print_level']
     else:
         print_level = 0
@@ -209,31 +209,31 @@ def geodesiclm(func, x0, **kwargs):
     ## print_unit
     print_unit = 6
 
-    if kwargs.has_key('imethod'):
+    if 'imethod' in kwargs:
         imethod = kwargs['imethod']
     else:
         imethod = 0
 
     ## iaccel
-    if kwargs.has_key('iaccel'):
+    if 'iaccel' in kwargs:
         iaccel = kwargs['iaccel']
     else:
         iaccel = 1
 
     ## ibold
-    if kwargs.has_key('ibold'):
+    if 'ibold' in kwargs:
         ibold = kwargs['ibold']
     else:
         ibold = 2
 
     ## ibroyden
-    if kwargs.has_key('ibroyden'):
+    if 'ibroyden' in kwargs:
         ibroyden = kwargs['ibroyden']
     else:
         ibroyden = 0
 
     ## initialfactor
-    if kwargs.has_key('initialfactor'):
+    if 'initialfactor' in kwargs:
         initialfactor = kwargs['initialfactor']
     else:
         if imethod < 10:
@@ -242,25 +242,25 @@ def geodesiclm(func, x0, **kwargs):
             initialfactor = 100.0
 
     ## factoraccept
-    if kwargs.has_key('factoraccept'):
+    if 'factoraccept' in kwargs:
         factoraccept = kwargs['factoraccept']
     else:
         factoraccept = 3.0
 
     ## factorreject
-    if kwargs.has_key('factorreject'):
+    if 'factorreject' in kwargs:
         factorreject = kwargs['factorreject']
     else:
         factorreject = 2.0
 
     ## avmax
-    if kwargs.has_key('avmax'):
+    if 'avmax' in kwargs:
         avmax = kwargs['avmax']
     else:
         avmax = 0.75
 
     ## m
-    if kwargs.has_key('m'):
+    if 'm' in kwargs:
         _m = kwargs['m']
     else:
         _m = len(func(x0,*func_extra_args))
@@ -293,9 +293,9 @@ def geodesiclm(func, x0, **kwargs):
                            func_extra_args = func_extra_args,
                            jacobian_extra_args = jacobian_extra_args,
                            Avv_extra_args = Avv_extra_args)
-    
 
-    if kwargs.has_key('full_output'):
+
+    if 'full_output' in kwargs:
         full_output = kwargs['full_output']
     else:
         full_output = 0
